@@ -8,6 +8,7 @@ import ClientForm from './components/ClientForm';
 import MessageTemplates from './components/MessageTemplates';
 import ChecklistConfig from './components/ChecklistConfig';
 import ClientPortal from './components/ClientPortal';
+import ClientIntakeForm from './components/ClientIntakeForm';
 
 function parseRoute(hash: string): { page: string; param?: string } {
   const h = hash.replace(/^#\/?/, '');
@@ -19,6 +20,7 @@ function parseRoute(hash: string): { page: string; param?: string } {
   if (h.startsWith('editar-cliente/')) return { page: 'editar-cliente', param: h.split('/')[1] };
   if (h === 'plantillas') return { page: 'plantillas' };
   if (h === 'config') return { page: 'config' };
+  if (h.startsWith('registro')) return { page: 'registro' };
   if (h.startsWith('portal/')) return { page: 'portal', param: h.split('/')[1] };
   return { page: 'dashboard' };
 }
@@ -34,6 +36,10 @@ const App: React.FC = () => {
 
   if (route.page === 'portal') {
     return <ClientPortal portalKey={route.param || ''} />;
+  }
+
+  if (route.page === 'registro') {
+    return <ClientIntakeForm />;
   }
 
   let content: React.ReactNode;

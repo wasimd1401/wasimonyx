@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStore } from '../store';
 import { STATUS_ORDER, STATUS_LABELS, STATUS_COLORS } from '../constants';
 
 const Dashboard: React.FC = () => {
   const { state } = useStore();
+  const [linkCopied, setLinkCopied] = useState(false);
+
+  const registrationLink = `${window.location.origin}${window.location.pathname}#/registro`;
+
+  const copyRegistrationLink = () => {
+    navigator.clipboard.writeText(registrationLink).then(() => {
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 2000);
+    });
+  };
   const { clients } = state;
 
   const statusCounts = STATUS_ORDER.map(status => ({
@@ -42,9 +52,34 @@ const Dashboard: React.FC = () => {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Panel</h1>
-        <p className="text-gray-500 mt-1">Resumen general de clientes y vencimientos</p>
+      <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Panel</h1>
+          <p className="text-gray-500 mt-1">Resumen general de clientes y vencimientos</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <a
+            href="#/registro"
+            target="_blank"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 hover:text-indigo-700 px-3 py-2 rounded-lg hover:bg-indigo-50 transition-colors"
+          >
+            <span className="material-icons-outlined text-lg">open_in_new</span>
+            Ver formulario
+          </a>
+          <button
+            onClick={copyRegistrationLink}
+            className={`inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-lg transition-colors ${
+              linkCopied
+                ? 'bg-green-100 text-green-700'
+                : 'bg-indigo-600 text-white hover:bg-indigo-700'
+            }`}
+          >
+            <span className="material-icons-outlined text-lg">
+              {linkCopied ? 'check' : 'link'}
+            </span>
+            {linkCopied ? 'Enlace copiado' : 'Copiar enlace de registro'}
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
