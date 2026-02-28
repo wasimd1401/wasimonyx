@@ -1,92 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Onyx AI Consulting</title>
+    <title>Portal Contable Lite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       rel="stylesheet"
     />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
-        darkMode: "class",
         theme: {
           extend: {
-            colors: {
-              primary: "#1a1a1a",
-              "background-light": "#f3f2ef",
-              "background-dark": "#0f0f11",
-              onyx: {
-                pink: "#db2777",
-                orange: "#f97316",
-                yellow: "#fbbf24",
-                teal: "#0d9488",
-                blue: "#2563eb",
-              },
-            },
             fontFamily: {
-              display: ["Syne", "sans-serif"],
-              body: ["Space Grotesk", "sans-serif"],
-            },
-            backgroundImage: {
-              noise:
-                "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E\")",
-              "sphere-1": "radial-gradient(circle at 30% 30%, #fbcfe8, #db2777)",
-              "sphere-2": "radial-gradient(circle at 30% 30%, #fed7aa, #f97316)",
-              "sphere-3": "radial-gradient(circle at 30% 30%, #99f6e4, #0d9488)",
-            },
-            boxShadow: {
-              sphere:
-                "inset -10px -10px 20px rgba(0, 0, 0, 0.2), 10px 10px 20px rgba(0, 0, 0, 0.1)",
-            },
-            animation: {
-              float: "float 6s ease-in-out infinite",
-              "float-delayed": "float 6s ease-in-out 3s infinite",
-              "spin-slow": "spin 12s linear infinite",
-              marquee: "marquee 25s linear infinite",
-            },
-            keyframes: {
-              float: {
-                "0%, 100%": { transform: "translateY(0)" },
-                "50%": { transform: "translateY(-20px)" },
-              },
-              marquee: {
-                "0%": { transform: "translateX(0%)" },
-                "100%": { transform: "translateX(-100%)" },
-              },
+              sans: ["Inter", "system-ui", "sans-serif"],
             },
           },
         },
       };
     </script>
     <style>
-      /* Custom utility for text outlines that Tailwind doesn't strictly support out of the box without plugins */
-      .text-outline-white {
-        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+      * {
+        font-family: "Inter", system-ui, sans-serif;
       }
-      .text-outline-dark {
-        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
+      .drag-over {
+        background-color: #eef2ff;
+        border-color: #6366f1;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
-  }
-}
-</script>
-</head>
-  <body class="bg-background-light dark:bg-background-dark text-primary dark:text-white font-body selection:bg-onyx-pink selection:text-white transition-colors duration-300">
+  </head>
+  <body class="bg-gray-50 text-gray-900 antialiased">
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
